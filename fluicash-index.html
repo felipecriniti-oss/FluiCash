@@ -1,0 +1,1135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>flui.cash — Sua máquina trabalha. Seu caixa flui.</title>
+<meta name="description" content="Antecipação de recebíveis de cartão para PMEs. Taxa fixa de 3,99%, PIX em minutos, mesmo com CNPJ negativado. Mantenha sua maquininha de sempre." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --green:#00C853;
+    --green-deep:#00A344;
+    --navy:#1E3A8A;
+    --navy-deep:#152968;
+    --coral:#FF7A45;
+    --paper:#FAFAF7;
+    --ink:#1C1C1C;
+    --ink-2:#3C3C3C;
+    --mute:#6B6B66;
+    --line:#E5E5E0;
+    --line-2:#EFEFEA;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    font-size:17px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  h1,h2,h3,h4,p{margin:0}
+  h1{font-size:clamp(36px,6.2vw,72px);font-weight:800;letter-spacing:-0.025em;line-height:1.02;text-wrap:balance}
+  h2{font-size:clamp(28px,3.6vw,44px);font-weight:700;letter-spacing:-0.02em;line-height:1.08;text-wrap:balance}
+  h3{font-size:20px;font-weight:600;letter-spacing:-0.01em}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  .mono{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,250,247,0.86);
+    backdrop-filter:saturate(140%) blur(10px);
+    -webkit-backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;gap:24px;height:68px}
+  .logo{display:flex;align-items:center;gap:10px}
+  .logo .word{font-weight:800;font-size:20px;letter-spacing:-0.02em}
+  .logo .word .dot{color:var(--green)}
+  .nav .links{display:none;gap:28px;margin-left:auto;align-items:center}
+  .nav .links a{font-size:15px;color:var(--ink-2);font-weight:500}
+  .nav .links a:hover{color:var(--ink)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    height:46px;padding:0 20px;border-radius:999px;font-weight:600;font-size:15px;
+    transition:transform .12s ease, background .15s ease, box-shadow .2s ease, color .15s;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--green);color:#062B12;box-shadow:0 1px 0 rgba(0,0,0,.04), 0 8px 18px -8px rgba(0,200,83,.55)}
+  .btn-primary:hover{background:var(--green-deep);color:#fff;transform:translateY(-1px)}
+  .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:var(--paper)}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--ink)}
+  .btn-lg{height:54px;padding:0 26px;font-size:16px}
+  .menu-btn{margin-left:auto;width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);background:#fff}
+  .menu-btn span{display:block;width:18px;height:2px;background:var(--ink);position:relative}
+  .menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--ink)}
+  .menu-btn span::before{top:-6px}.menu-btn span::after{top:6px}
+  @media (min-width:880px){
+    .nav .links{display:flex}
+    .menu-btn{display:none}
+  }
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:center;padding:48px 0 56px}
+  @media(min-width:980px){.hero-grid{grid-template-columns:1.05fr .95fr;gap:64px;padding:80px 0 96px}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:#EAFBF0;color:var(--green-deep);font-weight:600;font-size:13px;letter-spacing:0.01em}
+  .eyebrow .dot-pulse{width:8px;height:8px;border-radius:999px;background:var(--green);box-shadow:0 0 0 0 rgba(0,200,83,.55);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,200,83,.55)}70%{box-shadow:0 0 0 12px rgba(0,200,83,0)}100%{box-shadow:0 0 0 0 rgba(0,200,83,0)}}
+  h1 .accent{color:var(--green);font-style:normal}
+  h1 .underline{position:relative;display:inline-block}
+  h1 .underline::after{content:"";position:absolute;left:0;right:0;bottom:0.04em;height:0.18em;background:rgba(0,200,83,.18);z-index:-1;border-radius:4px}
+  .hero p.lede{font-size:clamp(17px,1.6vw,20px);color:var(--ink-2);margin-top:20px;max-width:560px;line-height:1.5}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:14px;font-weight:500;color:var(--ink-2)}
+  .chip svg{width:16px;height:16px;color:var(--green)}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .hero-trust{margin-top:28px;font-size:13px;color:var(--mute);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .hero-trust .check{width:14px;height:14px;color:var(--green)}
+
+  /* Hero photo */
+  .hero-photo{
+    position:relative;
+    aspect-ratio: 4 / 5;
+    border-radius:24px;
+    overflow:hidden;
+    background:#0E1F4D;
+    box-shadow:0 40px 80px -30px rgba(28,28,28,.35);
+  }
+  @media(min-width:980px){.hero-photo{aspect-ratio: 4 / 5}}
+  .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero-photo::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, transparent 50%, rgba(14,31,77,.55) 100%),
+      linear-gradient(135deg, rgba(0,200,83,.16), transparent 60%);
+    pointer-events:none;
+  }
+  .hero-pix-float{
+    position:absolute;left:20px;bottom:20px;right:20px;
+    background:#fff;border-radius:16px;padding:16px 18px;
+    display:flex;align-items:center;gap:14px;
+    box-shadow:0 20px 40px -10px rgba(0,0,0,.35);
+    z-index:3;
+  }
+  @media(min-width:560px){.hero-pix-float{right:auto;min-width:280px;left:24px;bottom:24px}}
+  .hero-pix-float .icon{
+    width:42px;height:42px;border-radius:12px;background:#EAFBF0;color:var(--green-deep);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .hero-pix-float .icon svg{width:22px;height:22px}
+  .hero-pix-float .lbl{font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+  .hero-pix-float .amt{font-size:20px;font-weight:800;letter-spacing:-0.02em;color:var(--ink);line-height:1.1;margin-top:2px}
+  .hero-pix-float .who{font-size:12px;color:var(--mute);margin-top:2px}
+
+  /* Hero illustration (legacy, kept hidden) */
+  .hero-vis{
+    position:relative;
+    aspect-ratio: 1 / 0.9;
+    background:
+      radial-gradient(80% 60% at 70% 30%, rgba(0,200,83,.10), transparent 60%),
+      radial-gradient(60% 50% at 20% 80%, rgba(255,122,69,.08), transparent 60%),
+      linear-gradient(180deg,#fff,#F5F5EE);
+    border:1px solid var(--line);
+    border-radius:24px;
+    overflow:hidden;
+    display:none;
+  }
+  .hero-vis .grid-bg{
+    position:absolute;inset:0;
+    background-image:linear-gradient(var(--line-2) 1px, transparent 1px), linear-gradient(90deg, var(--line-2) 1px, transparent 1px);
+    background-size:32px 32px;
+    mask-image:radial-gradient(ellipse at center, #000 30%, transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 75%);
+    opacity:.7;
+  }
+  .pos{
+    position:absolute;left:8%;top:18%;width:46%;
+    transform:rotate(-6deg);
+    filter:drop-shadow(0 30px 30px rgba(28,28,28,.12));
+  }
+  .pix-card{
+    position:absolute;right:6%;top:14%;width:42%;
+    background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;
+    box-shadow:0 30px 50px -20px rgba(28,28,28,.18);
+    transform:rotate(3deg);
+  }
+  .pix-card .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .pix-card .label{font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+  .pix-card .badge{font-size:11px;background:#EAFBF0;color:var(--green-deep);padding:3px 8px;border-radius:999px;font-weight:600}
+  .pix-card .amount{font-size:clamp(22px,2.6vw,32px);font-weight:800;letter-spacing:-0.02em;color:var(--ink)}
+  .pix-card .meta{font-size:12px;color:var(--mute);margin-top:4px}
+  .pix-card .pix-row{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}
+  .pix-card .pix-row svg{width:22px;height:22px;color:var(--green)}
+  .pix-card .pix-row span{font-size:13px;color:var(--ink-2);font-weight:500}
+  .flow-arrow{position:absolute;left:46%;top:48%;width:18%}
+  .flow-arrow svg{width:100%;color:var(--coral)}
+  .float-tag{
+    position:absolute;background:var(--ink);color:#fff;border-radius:10px;padding:8px 12px;
+    font-size:12px;font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:0;
+  }
+  .ft-1{left:6%;bottom:10%}
+  .ft-1::before{content:"";position:absolute;left:14px;top:-5px;width:10px;height:10px;background:var(--ink);transform:rotate(45deg)}
+  .ft-2{right:8%;bottom:18%;background:var(--coral);color:#1C1C1C}
+  .ft-2::before{content:"";position:absolute;right:18px;top:-5px;width:10px;height:10px;background:var(--coral);transform:rotate(45deg)}
+
+  /* ---------- Sections ---------- */
+  section{padding:84px 0;border-top:1px solid var(--line)}
+  .section-head{display:flex;flex-direction:column;gap:12px;margin-bottom:40px;max-width:760px}
+  .section-head .kicker{font-size:13px;font-weight:600;color:var(--green-deep);text-transform:uppercase;letter-spacing:.12em}
+  .section-head p{color:var(--ink-2);font-size:17px;max-width:620px}
+
+  /* ---------- Como funciona ---------- */
+  .steps{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:720px){.steps{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1040px){.steps{grid-template-columns:repeat(4,1fr);gap:20px}}
+  .step{position:relative;background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:14px;min-height:220px;transition:border-color .2s, transform .2s}
+  .step:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .step .num{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--mute);font-weight:500}
+  .step .num b{color:var(--green-deep);font-weight:700}
+  .step h3{font-size:18px;line-height:1.25}
+  .step p{font-size:14.5px;color:var(--ink-2);line-height:1.5}
+  .step .ico{width:44px;height:44px;border-radius:12px;background:#EAFBF0;display:flex;align-items:center;justify-content:center;color:var(--green-deep)}
+  .step .ico svg{width:22px;height:22px}
+
+  /* ---------- Para quem ---------- */
+  .audience{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(min-width:720px){.audience{grid-template-columns:repeat(3,1fr);gap:18px}}
+  @media(min-width:1040px){.audience{grid-template-columns:repeat(6,1fr)}}
+  .aud{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 18px;display:flex;flex-direction:column;gap:14px;align-items:flex-start;min-height:160px;transition:.2s}
+  .aud:hover{border-color:var(--coral);background:#fff}
+  .aud .ico{width:44px;height:44px;border-radius:12px;background:#FFF1EB;color:var(--coral);display:flex;align-items:center;justify-content:center}
+  .aud .ico svg{width:22px;height:22px}
+  .aud .name{font-weight:600;font-size:15px;line-height:1.25}
+  .audience-foot{margin-top:24px;font-size:14.5px;color:var(--ink-2)}
+  .audience-foot b{color:var(--ink)}
+
+  /* ---------- Diferencial ---------- */
+  .diff{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:720px){.diff{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1040px){.diff{grid-template-columns:repeat(4,1fr)}}
+  .diff-card{position:relative;background:#0F1B3D;color:#fff;border-radius:18px;padding:28px;min-height:240px;display:flex;flex-direction:column;gap:14px;overflow:hidden;border:1px solid #1B2A56}
+  .diff-card::before{content:"";position:absolute;inset:auto -30% -50% auto;width:200px;height:200px;border-radius:999px;background:radial-gradient(circle, rgba(0,200,83,.35), transparent 60%);opacity:.7}
+  .diff-card .ico{width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:var(--green)}
+  .diff-card h3{font-size:18px;line-height:1.25;color:#fff}
+  .diff-card p{font-size:14.5px;color:#C8CDDF;line-height:1.55}
+  .diff-card .pill{align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);background:rgba(0,200,83,.12);padding:4px 10px;border-radius:999px;font-weight:500;letter-spacing:.04em}
+
+  /* ---------- Taxa transparente ---------- */
+  .rate{
+    background:linear-gradient(180deg,#0E2266,#1E3A8A);
+    color:#fff;border-radius:24px;padding:48px 32px;
+    display:grid;grid-template-columns:1fr;gap:32px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  @media(min-width:980px){.rate{grid-template-columns:1.05fr .95fr;padding:64px 56px;gap:48px}}
+  .rate::before{content:"";position:absolute;inset:auto -10% -50% auto;width:480px;height:480px;border-radius:999px;background:radial-gradient(circle,rgba(0,200,83,.45),transparent 60%);pointer-events:none}
+  .rate h2{color:#fff}
+  .rate .lede{color:#C7CFEA;margin-top:14px;max-width:480px;font-size:17px}
+  .rate .points{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+  .rate .points li{display:flex;align-items:center;gap:10px;font-size:15px;color:#E6EAF7;list-style:none}
+  .rate .points li svg{width:18px;height:18px;color:var(--green)}
+  .rate .points{padding:0}
+  .calc{
+    background:#fff;color:var(--ink);border-radius:18px;padding:28px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.4);
+    position:relative;z-index:2;
+  }
+  .calc h3{font-size:14px;color:var(--mute);font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+  .calc .row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .calc .row.last{border:0;padding-bottom:0}
+  .calc .lbl{font-size:14px;color:var(--ink-2)}
+  .calc .val{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600}
+  .calc .big{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0 6px;border-top:2px solid var(--ink);margin-top:10px}
+  .calc .big .lbl{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink);font-weight:700}
+  .calc .big .val{font-size:32px;color:var(--green-deep)}
+  .calc .input-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:8px 0 18px}
+  .calc input[type=range]{flex:1;accent-color:var(--green)}
+  .calc .amount-input{width:140px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;text-align:right}
+  .calc .amount-input:focus{outline:none;border-color:var(--green)}
+  .calc .note{margin-top:14px;font-size:12.5px;color:var(--mute);line-height:1.45}
+
+  /* ---------- Form ---------- */
+  .form-section{background:#F5F5EE;border-top:1px solid var(--line)}
+  .form-card{
+    max-width:720px;margin:0 auto;
+    background:#fff;border:1px solid var(--line);border-radius:22px;
+    padding:36px;
+    box-shadow:0 30px 60px -30px rgba(28,28,28,.18);
+  }
+  @media(min-width:720px){.form-card{padding:48px}}
+  .form-card h2{font-size:clamp(26px,3vw,34px)}
+  .form-card .sub{color:var(--ink-2);margin-top:8px;font-size:16px}
+  .field{display:flex;flex-direction:column;gap:6px;margin-top:18px}
+  .field label{font-size:13px;font-weight:600;color:var(--ink-2)}
+  .field .req{color:var(--coral)}
+  .field input,.field select{
+    height:48px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line);
+    background:#fff;font:inherit;font-size:15px;color:var(--ink);
+    transition:border-color .15s, box-shadow .15s;
+  }
+  .field input:focus,.field select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 4px rgba(0,200,83,.12)}
+  .field-row{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:640px){.field-row{grid-template-columns:1fr 1fr;gap:18px}}
+  .acq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+  @media(min-width:640px){.acq-grid{grid-template-columns:repeat(4,1fr)}}
+  .acq{
+    display:flex;align-items:center;gap:8px;
+    border:1.5px solid var(--line);background:#fff;border-radius:10px;
+    padding:10px 12px;cursor:pointer;font-size:14px;font-weight:500;
+    user-select:none;transition:.15s;
+  }
+  .acq:hover{border-color:var(--ink-2)}
+  .acq input{appearance:none;width:18px;height:18px;border:1.5px solid var(--line);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;background:#fff}
+  .acq input:checked{background:var(--green);border-color:var(--green)}
+  .acq input:checked::after{content:"";width:10px;height:6px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+  .acq.checked{border-color:var(--green);background:#F2FCF6}
+  .form-actions{margin-top:28px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+  .form-actions .btn{width:100%}
+  @media(min-width:640px){.form-actions .btn{width:auto;min-width:260px}}
+  .form-card .meta{font-size:13px;color:var(--mute);margin-top:14px;display:flex;align-items:center;gap:8px}
+  .form-card .meta svg{width:14px;height:14px;color:var(--green)}
+  .success{
+    display:none;text-align:center;padding:24px 0;
+  }
+  .success .check{
+    width:64px;height:64px;border-radius:999px;background:#EAFBF0;color:var(--green-deep);
+    display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;
+  }
+  .success.show{display:block}
+  .form-card.done .form-body{display:none}
+
+  /* ---------- Adquirentes ---------- */
+  .partners{padding:64px 0;background:#fff}
+  .partners .lbl{text-align:center;font-size:14px;color:var(--mute);font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+  .partners h2{text-align:center;margin-top:8px;font-size:clamp(22px,2.4vw,30px)}
+  .partner-row{margin-top:32px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(min-width:720px){.partner-row{grid-template-columns:repeat(3,1fr);gap:18px}}
+  @media(min-width:1040px){.partner-row{grid-template-columns:repeat(6,1fr)}}
+  .partner{
+    height:72px;border:1px solid var(--line);border-radius:14px;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    font-weight:700;letter-spacing:-0.01em;color:var(--ink-2);
+    background:#FAFAF7;font-size:18px;
+  }
+  .partner .acq-dot{width:10px;height:10px;border-radius:999px}
+
+  /* ---------- Lifestyle band ---------- */
+  .lifestyle{
+    position:relative;padding:0;border-top:1px solid var(--line);
+    min-height:520px;display:flex;align-items:center;
+    overflow:hidden;background:#0E1F4D;
+  }
+  .lifestyle .bg{position:absolute;inset:0}
+  .lifestyle .bg img{width:100%;height:100%;object-fit:cover;display:block}
+  .lifestyle .bg::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(115deg, rgba(14,31,77,0.92) 0%, rgba(14,31,77,0.7) 50%, rgba(14,31,77,0.45) 100%);
+  }
+  .lifestyle .wrap{position:relative;z-index:2;padding:96px 24px;width:100%;max-width:1200px}
+  .lifestyle .kicker{color:#7BFFB1;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.12em}
+  .lifestyle h2{color:#fff;margin-top:10px;max-width:680px;font-size:clamp(32px,4.6vw,56px);line-height:1.05}
+  .lifestyle p{color:#D4DAEF;margin-top:16px;max-width:520px;font-size:18px}
+  .lifestyle .actions{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px}
+
+  /* ---------- Stats bar ---------- */
+  .stats{padding:64px 0;background:var(--paper);border-top:1px solid var(--line)}
+  .stats-grid{display:grid;grid-template-columns:1fr;gap:8px;border:1px solid var(--line);border-radius:20px;background:#fff;overflow:hidden}
+  @media(min-width:760px){.stats-grid{grid-template-columns:repeat(3,1fr);gap:0}}
+  .stat{padding:32px 28px;text-align:left;border-bottom:1px solid var(--line)}
+  @media(min-width:760px){.stat{border-bottom:0;border-right:1px solid var(--line)}.stat:last-child{border-right:0}}
+  .stat .num{font-size:clamp(40px,5vw,60px);font-weight:800;color:var(--green-deep);letter-spacing:-0.03em;line-height:1}
+  .stat .num small{font-size:.45em;font-weight:700;color:var(--green-deep);margin-left:4px;letter-spacing:0}
+  .stat .lbl{margin-top:10px;font-size:14.5px;color:var(--ink-2);font-weight:500;line-height:1.4;max-width:240px}
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{padding:96px 0;background:#F5F5EE;border-top:1px solid var(--line)}
+  .test-grid{display:grid;grid-template-columns:1fr;gap:18px}
+  @media(min-width:720px){.test-grid{grid-template-columns:repeat(2,1fr);gap:22px}}
+  @media(min-width:1100px){.test-grid{grid-template-columns:repeat(4,1fr)}}
+  .test-card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s, box-shadow .25s, border-color .25s}
+  .test-card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -25px rgba(28,28,28,.18);border-color:var(--ink)}
+  .test-photo{aspect-ratio:1/1;position:relative;overflow:hidden;background:#0E1F4D}
+  .test-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .test-card:hover .test-photo img{transform:scale(1.04)}
+  .test-photo::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(180deg,transparent,rgba(14,31,77,.35))}
+  .test-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .test-tag{align-self:flex-start;font-size:11px;font-weight:600;color:var(--green-deep);background:#EAFBF0;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.08em}
+  .test-name{font-size:16px;font-weight:700;color:var(--ink);letter-spacing:-0.01em;line-height:1.2}
+  .test-name span{display:block;font-size:13px;font-weight:500;color:var(--mute);margin-top:3px}
+  .test-quote{font-size:15px;color:var(--ink-2);line-height:1.5;margin-top:4px;flex:1}
+  .test-quote::before{content:"“";color:var(--green);font-size:28px;font-weight:700;line-height:0;margin-right:2px;vertical-align:-6px}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{display:flex;flex-direction:column;gap:10px;max-width:880px}
+  details.faq{
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden;
+    transition:border-color .15s;
+  }
+  details.faq[open]{border-color:var(--ink)}
+  details.faq summary{
+    list-style:none;cursor:pointer;padding:22px 24px;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+    font-weight:600;font-size:17px;line-height:1.3;
+  }
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary .plus{flex:0 0 28px;width:28px;height:28px;border-radius:999px;background:#F2FCF6;color:var(--green-deep);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;transition:transform .2s}
+  details.faq[open] summary .plus{transform:rotate(45deg);background:var(--ink);color:#fff}
+  details.faq .body{padding:0 24px 24px;color:var(--ink-2);font-size:15.5px;line-height:1.6;max-width:760px}
+
+  /* ---------- Footer ---------- */
+  footer.site{background:#0E0E0E;color:#D8D8D8;padding:64px 0 32px;border:0}
+  footer.site .grid{display:grid;grid-template-columns:1fr;gap:32px}
+  @media(min-width:760px){footer.site .grid{grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px}}
+  footer.site h4{color:#fff;font-size:13px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px;font-weight:700}
+  footer.site ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:14.5px}
+  footer.site a:hover{color:#fff}
+  footer.site .logo .word{color:#fff}
+  footer.site .blurb{margin-top:14px;font-size:14px;color:#9C9C99;line-height:1.55;max-width:300px}
+  .compliance{
+    margin-top:48px;padding:24px;border:1px solid #2A2A2A;border-radius:14px;
+    font-size:13px;color:#B5B5B0;line-height:1.6;
+    background:#161616;
+  }
+  .compliance b{color:#fff;font-weight:600}
+  .legal{margin-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12.5px;color:#7A7A77;border-top:1px solid #1F1F1F;padding-top:20px}
+
+  /* ---------- Mobile menu ---------- */
+  .mobile-menu{
+    display:none;position:fixed;inset:68px 0 0 0;z-index:40;background:rgba(250,250,247,.98);
+    padding:24px;flex-direction:column;gap:6px;backdrop-filter:blur(8px);
+  }
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{padding:14px 4px;border-bottom:1px solid var(--line);font-size:18px;font-weight:500}
+  .mobile-menu .btn{margin-top:18px;width:100%}
+
+  /* misc */
+  .anchor-offset{position:relative;top:-72px;display:block;height:1px;visibility:hidden}
+</style>
+</head>
+<body>
+
+<!-- ===========================  HEADER  =========================== -->
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="flui.cash, página inicial">
+      <!-- Logo SVG: maquininha azul-marinho com tela em formato de coração verde e botão coral -->
+      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <rect x="10" y="6" width="44" height="52" rx="7" fill="#1E3A8A"/>
+        <rect x="10" y="6" width="44" height="52" rx="7" stroke="#152968" stroke-width="1.2"/>
+        <!-- screen with ascending line + arrow -->
+        <rect x="14" y="11" width="36" height="24" rx="4" fill="#0E1F4D"/>
+        <path d="M18 30 L26 24 L32 26 L42 16" stroke="#00C853" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M37 16 L42 16 L42 21" stroke="#00C853" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <!-- keypad dots -->
+        <g fill="#C8CDDF">
+          <circle cx="20" cy="42" r="1.6"/><circle cx="28" cy="42" r="1.6"/><circle cx="36" cy="42" r="1.6"/><circle cx="44" cy="42" r="1.6"/>
+          <circle cx="20" cy="48" r="1.6"/><circle cx="28" cy="48" r="1.6"/><circle cx="36" cy="48" r="1.6"/>
+        </g>
+        <!-- coral button -->
+        <circle cx="44" cy="48" r="3" fill="#FF7A45"/>
+      </svg>
+      <span class="word">flui<span class="dot">.</span>cash</span>
+    </a>
+    <nav class="links" aria-label="Navegação principal">
+      <a href="#como">Como funciona</a>
+      <a href="#para-quem">Para quem</a>
+      <a href="#taxa">Taxa</a>
+      <a href="#contato">Contato</a>
+      <a href="#cadastro" class="btn btn-primary" style="height:40px;padding:0 16px;font-size:14px">Antecipar agora</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#como">Como funciona</a>
+    <a href="#para-quem">Para quem</a>
+    <a href="#taxa">Taxa</a>
+    <a href="#contato">Contato</a>
+    <a href="#cadastro" class="btn btn-primary btn-lg">Antecipar agora</a>
+  </div>
+</header>
+
+<span id="top" class="anchor-offset"></span>
+
+<!-- ===========================  HERO  =========================== -->
+<main>
+<section class="hero" style="border-top:0;padding:0">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot-pulse"></span> PIX em minutos · taxa fixa de 3,99%</span>
+      <h1 style="margin-top:18px">
+        Sua máquina trabalha.<br/>
+        Seu caixa <span class="underline accent">flui</span>.
+      </h1>
+      <p class="lede">Antecipação de recebíveis de cartão em minutos, taxa fixa de 3,99%, mesmo com CNPJ negativado. Sem trocar de maquininha.</p>
+
+      <div class="chips" aria-label="Destaques">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg> PIX em minutos</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg> Multi-adquirente</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg> CNPJ negativado OK</span>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#cadastro" class="btn btn-primary btn-lg">Antecipar agora →</a>
+        <a href="#taxa" class="btn btn-outline btn-lg">Simular</a>
+      </div>
+
+      <div class="hero-trust">
+        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>
+        Sem mensalidade · Sem adesão · Sem trocar de maquininha
+      </div>
+    </div>
+
+    <!-- Photo -->
+    <div class="hero-photo">
+      <img src="/photos/01-hero-restaurante.jpg" alt="Carlos, dono de restaurante de bairro, no balcão do seu estabelecimento" loading="eager"/>
+      <div class="hero-pix-float">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 9-9 9-9-9 9-9z"/><path d="M7 12 12 7l5 5-5 5z"/></svg>
+        </div>
+        <div>
+          <div class="lbl">Recebido via PIX</div>
+          <div class="amt">R$ 9.601,00</div>
+          <div class="who">Restaurante do Carlos · agora</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-vis" aria-hidden="true" style="display:none">
+      <div class="grid-bg"></div>
+
+      <!-- POS terminal large illustration -->
+      <svg class="pos" viewBox="0 0 280 360" fill="none">
+        <defs>
+          <linearGradient id="bz" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#244AAA"/><stop offset="1" stop-color="#152968"/>
+          </linearGradient>
+        </defs>
+        <rect x="20" y="14" width="240" height="330" rx="28" fill="url(#bz)"/>
+        <rect x="20" y="14" width="240" height="330" rx="28" stroke="#0B1A47" stroke-width="2"/>
+        <rect x="36" y="32" width="208" height="120" rx="14" fill="#0E1F4D"/>
+        <text x="50" y="58" font-family="JetBrains Mono,monospace" font-size="11" fill="#7C8EC9" letter-spacing="1.5">RECEBÍVEL · HOJE</text>
+        <!-- ascending line + arrow -->
+        <path d="M52 132 L96 108 L130 116 L186 60" stroke="#00C853" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M168 60 L186 60 L186 78" stroke="#00C853" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <text x="140" y="108" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="22" fill="#00C853">R$ 9.601</text>
+        <!-- keypad -->
+        <g fill="#E5E5E0">
+          <rect x="46" y="170" width="46" height="34" rx="8"/><rect x="116" y="170" width="46" height="34" rx="8"/><rect x="186" y="170" width="46" height="34" rx="8"/>
+          <rect x="46" y="212" width="46" height="34" rx="8"/><rect x="116" y="212" width="46" height="34" rx="8"/><rect x="186" y="212" width="46" height="34" rx="8"/>
+          <rect x="46" y="254" width="46" height="34" rx="8"/><rect x="116" y="254" width="46" height="34" rx="8"/>
+        </g>
+        <g fill="#1C1C1C" font-family="Inter,sans-serif" font-weight="700" font-size="16" text-anchor="middle">
+          <text x="69" y="192">1</text><text x="139" y="192">2</text><text x="209" y="192">3</text>
+          <text x="69" y="234">4</text><text x="139" y="234">5</text><text x="209" y="234">6</text>
+          <text x="69" y="276">7</text><text x="139" y="276">8</text>
+        </g>
+        <!-- coral confirm button -->
+        <rect x="186" y="254" width="46" height="34" rx="8" fill="#FF7A45"/>
+        <text x="209" y="276" font-family="Inter,sans-serif" font-weight="700" font-size="14" fill="#1C1C1C" text-anchor="middle">OK</text>
+        <!-- paper slot -->
+        <rect x="40" y="306" width="200" height="6" rx="3" fill="#0B1A47"/>
+      </svg>
+
+      <!-- PIX card -->
+      <div class="pix-card">
+        <div class="row">
+          <span class="label">Recebido via PIX</span>
+          <span class="badge">● ao vivo</span>
+        </div>
+        <div class="amount">R$ 9.601,00</div>
+        <div class="meta">flui.cash → Restaurante do Carlos · 14:32</div>
+        <div class="pix-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 9-9 9-9-9 9-9z"/><path d="M7 12 12 7l5 5-5 5z"/></svg>
+          <span>Liquidação instantânea · Banco Central</span>
+        </div>
+      </div>
+
+      <!-- arrow flow -->
+      <div class="flow-arrow">
+        <svg viewBox="0 0 120 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 30 C 30 5, 70 55, 115 30"/>
+          <path d="M105 22 L115 30 L105 38"/>
+        </svg>
+      </div>
+
+      <div class="float-tag ft-1">$ 10.000 antecipados</div>
+      <div class="float-tag ft-2">3,99% · fim.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================  COMO FUNCIONA  =========================== -->
+<section id="como">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Como funciona</span>
+      <h2>Quatro passos. Sem burocracia.</h2>
+      <p>Sua maquininha continua a mesma. A FluiCash apenas antecipa o que você já vendeu.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><path d="M7 15h2"/></svg>
+        </div>
+        <div class="num">PASSO <b>01</b></div>
+        <h3>Você vende no cartão normalmente</h3>
+        <p>Crédito, débito, parcelado. A maquininha de sempre, na sua adquirente de sempre.</p>
+      </div>
+      <div class="step">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M5 9l7-7 7 7"/><path d="M5 15l7 7 7-7"/></svg>
+        </div>
+        <div class="num">PASSO <b>02</b></div>
+        <h3>Registramos gravame multi-adquirente na CERC</h3>
+        <p>Stone, Cielo, Rede, GetNet, PagSeguro, SafraPay — todas no mesmo registro. Sem trocar nada.</p>
+      </div>
+      <div class="step">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+        </div>
+        <div class="num">PASSO <b>03</b></div>
+        <h3>Decisão automática em minutos</h3>
+        <p>Sem fila, sem gerente, sem reunião. Análise automatizada com base no gravame futuro registrado, não no Serasa.</p>
+      </div>
+      <div class="step">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+        </div>
+        <div class="num">PASSO <b>04</b></div>
+        <h3>Receba via PIX e siga vendendo</h3>
+        <p>Após o aceite da proposta, o valor cai na sua conta via PIX em minutos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================  LIFESTYLE PIX  =========================== -->
+<section class="lifestyle">
+  <div class="bg">
+    <img src="/photos/06-lifestyle-pix.jpg" alt="Comerciante sorrindo ao receber notificação de PIX no celular" loading="lazy"/>
+  </div>
+  <div class="wrap">
+    <span class="kicker">Sua próxima semana, hoje</span>
+    <h2>O momento em que o caixa flui.</h2>
+    <p>PIX em minutos depois do aceite. Direto na sua conta, sem boleto, sem espera, sem ligar pra ninguém.</p>
+    <div class="actions">
+      <a href="#cadastro" class="btn btn-primary btn-lg">Antecipar agora →</a>
+      <a href="#taxa" class="btn" style="background:transparent;border:1.5px solid #fff;color:#fff;height:54px;padding:0 26px">Simular antecipação</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================  PARA QUEM  =========================== -->
+<section id="para-quem" style="background:#F5F5EE">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Para quem é</span>
+      <h2>Para o comerciante que precisa do dinheiro do cartão antes do prazo padrão.</h2>
+      <p>Para o comerciante que opera com fluxo de caixa apertado e não pode esperar 30 dias pelo dinheiro que já vendeu.</p>
+    </div>
+    <div class="audience">
+      <div class="aud">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18l-1 9H4l-1-9z"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+        <div class="name">Restaurantes &<br/>lanchonetes</div>
+      </div>
+      <div class="aud">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 6-4 10"/><path d="M18 4l-4 6 4 10"/><path d="M10 10h4"/></svg></div>
+        <div class="name">Salões &<br/>barbearias</div>
+      </div>
+      <div class="aud">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18l-2 13H5L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/><path d="M9 12h6"/></svg></div>
+        <div class="name">Mercadinhos &<br/>açougues</div>
+      </div>
+      <div class="aud">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="8" r="2"/><circle cx="11" cy="5" r="2"/><circle cx="16" cy="8" r="2"/><circle cx="19" cy="13" r="2"/><path d="M8 14c-2 0-3 2-3 4 0 2 2 3 4 3 1 0 2-1 4-1s3 1 4 1c2 0 4-1 4-3 0-2-1-4-3-4-2 0-3 2-5 2s-3-2-5-2z"/></svg></div>
+        <div class="name">Pet shops</div>
+      </div>
+      <div class="aud">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l3-3h10l3 3v3a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-4-1V7z"/><path d="M5 10v10h14V10"/></svg></div>
+        <div class="name">Lojas de roupa</div>
+      </div>
+      <div class="aud">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z"/><path d="M12 14v8"/><path d="M9 22h6"/></svg></div>
+        <div class="name">Floriculturas</div>
+      </div>
+    </div>
+    <p class="audience-foot">Atende comerciantes que faturam de <b>R$ 80 mil a R$ 400 mil por mês</b> em cartão. Lava-jatos, oficinas e demais segmentos também são atendidos.</p>
+  </div>
+</section>
+
+<!-- ===========================  STATS BAR  =========================== -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="num">3,99<small>%</small></div>
+        <div class="lbl">Taxa fixa por antecipação. Sem variação por perfil.</div>
+      </div>
+      <div class="stat">
+        <div class="num">PIX<small style="font-size:.5em"> em minutos</small></div>
+        <div class="lbl">Direto na conta após o aceite formal da proposta.</div>
+      </div>
+      <div class="stat">
+        <div class="num">6<small> em 1</small></div>
+        <div class="lbl">Adquirentes cobertas em um único registro CERC.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================  TESTIMONIALS  =========================== -->
+<section class="testimonials">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:48px">
+      <span class="kicker">Comércio que flui</span>
+      <h2>Quem já antecipa hoje.</h2>
+      <p>Comerciantes brasileiros que usam a FluiCash para manter o caixa em dia, sem trocar a maquininha que já funciona.</p>
+    </div>
+    <div class="test-grid">
+      <article class="test-card">
+        <div class="test-photo">
+          <img src="/photos/02-padaria.jpg" alt="Renato, padeiro, no balcão de pães da sua padaria" loading="lazy"/>
+        </div>
+        <div class="test-body">
+          <span class="test-tag">Padaria</span>
+          <div class="test-name">Renato Souza<span>Padaria do Bairro · SP</span></div>
+          <p class="test-quote">Antecipo toda quarta. Salva o caixa e ainda sobra para repor a farinha sem aperto.</p>
+        </div>
+      </article>
+
+      <article class="test-card">
+        <div class="test-photo">
+          <img src="/photos/03-salao.jpg" alt="Mônica, cabeleireira, em seu salão de beleza" loading="lazy"/>
+        </div>
+        <div class="test-body">
+          <span class="test-tag">Salão</span>
+          <div class="test-name">Mônica Lima<span>Salão Estilo · RJ</span></div>
+          <p class="test-quote">Em meses de baixa, antecipo e não atraso fornecedor nem o aluguel da loja.</p>
+        </div>
+      </article>
+
+      <article class="test-card">
+        <div class="test-photo">
+          <img src="/photos/04-mercadinho.jpg" alt="Dona Cleusa, dona de mercadinho de bairro, atrás do balcão" loading="lazy"/>
+        </div>
+        <div class="test-body">
+          <span class="test-tag">Mercadinho</span>
+          <div class="test-name">Dona Cleusa<span>Mercadinho Boa Vista · MG</span></div>
+          <p class="test-quote">Estava com CNPJ negativado e mesmo assim fechei a operação no mesmo dia.</p>
+        </div>
+      </article>
+
+      <article class="test-card">
+        <div class="test-photo">
+          <img src="/photos/05-petshop.jpg" alt="Diogo, dono de pet shop, segurando um cachorro pequeno na recepção" loading="lazy"/>
+        </div>
+        <div class="test-body">
+          <span class="test-tag">Pet shop</span>
+          <div class="test-name">Diogo Vieira<span>Pet &amp; Cia · PR</span></div>
+          <p class="test-quote">PIX em minutos. Antecipação que antes era promessa, aqui acontece.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================  DIFERENCIAL  =========================== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Por que a flui.cash</span>
+      <h2>Quatro diferenciais que entregamos juntos.</h2>
+      <p>Outras antecipadoras exigem troca de adquirente, cessão de recebíveis, ficha limpa no Serasa e dias de espera. Na FluiCash, não.</p>
+    </div>
+    <div class="diff">
+      <div class="diff-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <span class="pill">CERC · gravame</span>
+        <h3>Multi-adquirente de verdade</h3>
+        <p>Um único registro cobre Stone, Cielo, Rede, GetNet, PagSeguro e SafraPay. Você não troca nem migra nada.</p>
+      </div>
+      <div class="diff-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l3 3 5-5"/><path d="M14 6l4 0 0 4"/><path d="M21 3l-7 7"/></svg></div>
+        <span class="pill">CNPJ negativado OK</span>
+        <h3>CNPJ negativado não impede aprovação</h3>
+        <p>A garantia da operação é o seu recebível futuro registrado na CERC, não o seu score de crédito. Restrições no CNPJ não impedem a aprovação.</p>
+      </div>
+      <div class="diff-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
+        <span class="pill">tempo real</span>
+        <h3>Decisão automática + PIX</h3>
+        <p>Análise rodando 24/7. Aceitou a proposta, o PIX cai em minutos — não em dias úteis.</p>
+      </div>
+      <div class="diff-card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <span class="pill">3,99% fim</span>
+        <h3>Taxa fixa, transparência total</h3>
+        <p>Taxa única para todos os clientes. Sem variação por perfil e sem custos embutidos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================  TAXA TRANSPARENTE  =========================== -->
+<section id="taxa" style="background:#F5F5EE">
+  <div class="wrap">
+    <div class="rate">
+      <div>
+        <span class="kicker" style="color:#7BFFB1">Taxa fixa</span>
+        <h2 style="margin-top:8px">Taxa fixa.<br/>Sem letras miúdas.</h2>
+        <p class="lede">Uma única operação. Uma única taxa. Sem mensalidade, sem adesão, sem variação por perfil de cliente.</p>
+        <ul class="points">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg> 3,99% por antecipação. Sem juros adicionais.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg> Sem mensalidade nem adesão.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg> Sem fiador, sem aval pessoal.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg> Custo total: taxa de 3,99% sobre o valor antecipado.</li>
+        </ul>
+      </div>
+
+      <!-- Calculadora simples -->
+      <div class="calc" role="group" aria-label="Simulação de antecipação">
+        <h3>Simule sua antecipação</h3>
+        <div class="input-row">
+          <input type="range" id="rng" min="1000" max="200000" step="500" value="10000" aria-label="Valor da antecipação"/>
+          <input type="text" id="amt" class="amount-input" value="R$ 10.000" inputmode="numeric" aria-label="Valor digitado"/>
+        </div>
+        <div class="row">
+          <span class="lbl">1 semana de cartão antecipada</span>
+          <span class="val" id="gross">R$ 10.000,00</span>
+        </div>
+        <div class="row">
+          <span class="lbl">Taxa fixa (3,99%)</span>
+          <span class="val" style="color:var(--coral)">– <span id="fee">R$ 399,00</span></span>
+        </div>
+        <div class="big">
+          <span class="lbl">Você recebe via PIX</span>
+          <span class="val" id="net">R$ 9.601,00</span>
+        </div>
+        <p class="note">Simulação ilustrativa para o lote semanal de recebíveis. Sujeita a registro de gravame na CERC e aceite formal da proposta. Não constitui pré-aprovação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================  FORMULÁRIO  =========================== -->
+<section id="cadastro" class="form-section">
+  <div class="wrap">
+    <div class="form-card" id="formCard">
+      <div class="form-body">
+        <span class="kicker" style="font-size:13px;font-weight:600;color:var(--green-deep);text-transform:uppercase;letter-spacing:.12em">Cadastro</span>
+        <h2 style="margin-top:6px">Quero antecipar.</h2>
+        <p class="sub">Preencha o formulário. Retorno em até 2 horas úteis — geralmente em minutos.</p>
+
+        <form id="leadForm" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="nome">Nome do estabelecimento <span class="req">*</span></label>
+              <input id="nome" name="nome" type="text" placeholder="Ex.: Restaurante do Carlos" required/>
+            </div>
+            <div class="field">
+              <label for="cnpj">CNPJ <span class="req">*</span></label>
+              <input id="cnpj" name="cnpj" type="text" inputmode="numeric" placeholder="00.000.000/0000-00" maxlength="18" required/>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="fat">Faturamento mensal médio em cartão <span class="req">*</span></label>
+              <select id="fat" name="fat" required>
+                <option value="">Selecione…</option>
+                <option>Até R$ 50 mil</option>
+                <option>R$ 50 mil – R$ 150 mil</option>
+                <option>R$ 150 mil – R$ 400 mil</option>
+                <option>Acima de R$ 400 mil</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="wpp">WhatsApp <span class="req">*</span></label>
+              <input id="wpp" name="wpp" type="tel" inputmode="numeric" placeholder="(11) 90000-0000" maxlength="16" required/>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">E-mail <span class="req">*</span></label>
+            <input id="email" name="email" type="email" placeholder="voce@seunegocio.com.br" required/>
+          </div>
+
+          <div class="field">
+            <label>Adquirentes que você usa <span class="req">*</span></label>
+            <div class="acq-grid" id="acqGrid">
+              <label class="acq"><input type="checkbox" name="acq" value="Stone"/> Stone</label>
+              <label class="acq"><input type="checkbox" name="acq" value="Cielo"/> Cielo</label>
+              <label class="acq"><input type="checkbox" name="acq" value="Rede"/> Rede</label>
+              <label class="acq"><input type="checkbox" name="acq" value="GetNet"/> GetNet</label>
+              <label class="acq"><input type="checkbox" name="acq" value="PagSeguro"/> PagSeguro</label>
+              <label class="acq"><input type="checkbox" name="acq" value="SafraPay"/> SafraPay</label>
+              <label class="acq"><input type="checkbox" name="acq" value="Outras"/> Outras</label>
+              <label class="acq"><input type="checkbox" name="acq" value="Não sei"/> Não sei</label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-lg">Quero antecipar →</button>
+            <p class="meta">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              Retorno em até 2 horas úteis. Seus dados são tratados conforme a LGPD e usados exclusivamente pela FluiCash.
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <div class="success" id="success">
+        <div class="check"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg></div>
+        <h2>Recebido. A gente já tá olhando.</h2>
+        <p style="color:var(--ink-2);margin-top:8px">Em até 2 horas úteis você recebe um WhatsApp da nossa equipe com a proposta. Quase sempre é em minutos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================  ADQUIRENTES  =========================== -->
+<section class="partners" id="contato" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="lbl">Compatibilidade</div>
+    <h2>As 6 principais adquirentes do Brasil em um único registro CERC.</h2>
+    <div class="partner-row" aria-label="Adquirentes parceiras">
+      <div class="partner"><span class="acq-dot" style="background:#00C853"></span> Stone</div>
+      <div class="partner"><span class="acq-dot" style="background:#1E3A8A"></span> Cielo</div>
+      <div class="partner"><span class="acq-dot" style="background:#FF7A45"></span> Rede</div>
+      <div class="partner"><span class="acq-dot" style="background:#7C3AED"></span> GetNet</div>
+      <div class="partner"><span class="acq-dot" style="background:#F59E0B"></span> PagSeguro</div>
+      <div class="partner"><span class="acq-dot" style="background:#0EA5E9"></span> SafraPay</div>
+    </div>
+    <p style="text-align:center;color:var(--mute);font-size:13px;margin-top:18px">Marcas mencionadas pertencem aos respectivos titulares.</p>
+  </div>
+</section>
+
+<!-- ===========================  FAQ  =========================== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Perguntas frequentes</span>
+      <h2>Dúvidas frequentes. Respostas diretas.</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq" open>
+        <summary>Preciso trocar de maquininha? <span class="plus">+</span></summary>
+        <div class="body">Não. Você continua com a Stone, Cielo, Rede, GetNet, PagSeguro ou SafraPay que já usa. O gravame é registrado na CERC, que é a entidade de registro dos seus recebíveis — não na adquirente. Sua máquina continua igual; muda só o destino do dinheiro.</div>
+      </details>
+      <details class="faq">
+        <summary>Funciona com CNPJ negativado? <span class="plus">+</span></summary>
+        <div class="body">Funciona. A análise é feita em cima do seu fluxo futuro de recebíveis de cartão registrado na CERC, que serve como garantia. Restrição no Serasa ou Serasa Score baixo não impede a operação. O que importa é você estar vendendo no cartão de forma recorrente.</div>
+      </details>
+      <details class="faq">
+        <summary>Em quanto tempo recebo? <span class="plus">+</span></summary>
+        <div class="body">Após o aceite formal da proposta, o PIX cai em minutos. A análise inicial e a proposta também são automáticas — geralmente em minutos, com prazo máximo de 2 horas úteis para casos que precisam de revisão manual.</div>
+      </details>
+      <details class="faq">
+        <summary>Quais são os custos além da taxa de 3,99%? <span class="plus">+</span></summary>
+        <div class="body">Nenhum. Não cobramos mensalidade, adesão, tarifa de cadastro, tarifa de PIX, IOF embutido, juros remuneratórios separados nem taxa de gravame. O custo total da operação é a taxa fixa de 3,99% sobre o valor antecipado. O IOF aplicável é calculado conforme legislação e já vem destacado na proposta.</div>
+      </details>
+    </div>
+
+    <div style="margin-top:48px;padding:32px;background:#0F1B3D;color:#fff;border-radius:18px;display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+      <h3 style="font-size:22px;color:#fff">Ainda tem dúvidas? Entre em contato.</h3>
+      <p style="color:#C7CFEA;max-width:520px">Atendimento por WhatsApp e e-mail em horário comercial, com retorno humano e sem URA.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px">
+        <a href="/cdn-cgi/l/email-protection#64070b0a1005100b240208110d0705170c4a070b094a0616" class="btn btn-primary"><span class="__cf_email__" data-cfemail="eb8884859f8a9f84ab8d879e82888a9883c5888486c58999">[email&#160;protected]</span></a>
+        <a href="#cadastro" class="btn btn-ghost" style="background:transparent;border:1.5px solid #C7CFEA;color:#fff">Cadastrar empresa</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===========================  FOOTER  =========================== -->
+<footer class="site">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <a class="logo" href="#top">
+          <svg width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <rect x="10" y="6" width="44" height="52" rx="7" fill="#1E3A8A"/>
+            <rect x="14" y="11" width="36" height="24" rx="4" fill="#0E1F4D"/>
+            <path d="M18 30 L26 24 L32 26 L42 16" stroke="#00C853" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M37 16 L42 16 L42 21" stroke="#00C853" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <g fill="#C8CDDF"><circle cx="20" cy="42" r="1.6"/><circle cx="28" cy="42" r="1.6"/><circle cx="36" cy="42" r="1.6"/><circle cx="44" cy="42" r="1.6"/><circle cx="20" cy="48" r="1.6"/><circle cx="28" cy="48" r="1.6"/><circle cx="36" cy="48" r="1.6"/></g>
+            <circle cx="44" cy="48" r="3" fill="#FF7A45"/>
+          </svg>
+          <span class="word">flui<span class="dot" style="color:var(--green)">.</span>cash</span>
+        </a>
+        <p class="blurb">Antecipação de recebíveis de cartão para o comércio brasileiro. Vendeu hoje. Recebeu agora.</p>
+      </div>
+      <div>
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Quem somos</a></li>
+          <li><a href="#">Trabalhe conosco</a></li>
+          <li><a href="#">Imprensa</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Produto</h4>
+        <ul>
+          <li><a href="#como">Como funciona</a></li>
+          <li><a href="#taxa">Taxa</a></li>
+          <li><a href="#cadastro">Cadastrar empresa</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal &amp; canais</h4>
+        <ul>
+          <li><a href="/cdn-cgi/l/email-protection#65060a0b1104110a250309100c0604160d4b060a084b0717"><span class="__cf_email__" data-cfemail="ee8d81809a8f9a81ae88829b878d8f9d86c08d8183c08c9c">[email&#160;protected]</span></a></li>
+          <li><a href="/cdn-cgi/l/email-protection#fa9e8a95ba9c968f93999b8992d4999597d49888"><span class="__cf_email__" data-cfemail="3652465976505a435f5557455e1855595b185444">[email&#160;protected]</span></a></li>
+          <li><a href="/cdn-cgi/l/email-protection#f19e848798959e839890b1979d849892908299df929e9cdf9383"><span class="__cf_email__" data-cfemail="2e415b58474a415c474f6e48425b474d4f5d46004d4143004c5c">[email&#160;protected]</span></a></li>
+          <li><a href="#">Termos de uso</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="compliance">
+      <b>A flui.cash é correspondente bancário.</b> Operações de crédito concedidas por instituição financeira parceira, regulada pelo Banco Central do Brasil. Recebíveis registrados em entidade autorizada (CERC). A flui.cash não capta recursos do público nem pratica intermediação financeira por conta própria.
+    </div>
+
+    <div class="legal">
+      <span>© 2026 flui.cash · Todos os direitos reservados.</span>
+      <span class="mono">v1.0 · Made in Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Mobile menu
+  const mb = document.getElementById('menuBtn');
+  const mm = document.getElementById('mobileMenu');
+  mb.addEventListener('click', () => {
+    const open = mm.classList.toggle('open');
+    mb.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mm.classList.remove('open');
+    mb.setAttribute('aria-expanded','false');
+  }));
+
+  // Currency helpers
+  const fmtBR = n => 'R$ ' + n.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+  const fmtBRshort = n => 'R$ ' + n.toLocaleString('pt-BR', {minimumFractionDigits:0, maximumFractionDigits:0});
+
+  // Calculator
+  const rng = document.getElementById('rng');
+  const amt = document.getElementById('amt');
+  const gross = document.getElementById('gross');
+  const fee = document.getElementById('fee');
+  const net = document.getElementById('net');
+  const RATE = 0.0399;
+  function recalc(v){
+    const fe = v * RATE;
+    const ne = v - fe;
+    gross.textContent = fmtBR(v);
+    fee.textContent = fmtBR(fe);
+    net.textContent = fmtBR(ne);
+  }
+  function syncFromRange(){
+    const v = parseFloat(rng.value);
+    amt.value = fmtBRshort(v);
+    recalc(v);
+  }
+  function syncFromInput(){
+    const raw = (amt.value || '').replace(/[^\d]/g,'');
+    let v = parseInt(raw || '0', 10);
+    if (isNaN(v)) v = 0;
+    v = Math.max(1000, Math.min(200000, v));
+    rng.value = v;
+    amt.value = fmtBRshort(v);
+    recalc(v);
+  }
+  rng.addEventListener('input', syncFromRange);
+  amt.addEventListener('blur', syncFromInput);
+  amt.addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); syncFromInput(); }});
+  syncFromRange();
+
+  // CNPJ + phone masks
+  function maskCNPJ(v){
+    v = v.replace(/\D/g,'').slice(0,14);
+    return v
+      .replace(/^(\d{2})(\d)/, '$1.$2')
+      .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3')
+      .replace(/\.(\d{3})(\d)/, '.$1/$2')
+      .replace(/(\d{4})(\d)/, '$1-$2');
+  }
+  function maskPhone(v){
+    v = v.replace(/\D/g,'').slice(0,11);
+    if (v.length <= 10) return v.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3').replace(/-$/,'');
+    return v.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3').replace(/-$/,'');
+  }
+  const cnpj = document.getElementById('cnpj');
+  cnpj.addEventListener('input', () => cnpj.value = maskCNPJ(cnpj.value));
+  const wpp = document.getElementById('wpp');
+  wpp.addEventListener('input', () => wpp.value = maskPhone(wpp.value));
+
+  // Acquirer chips visual feedback
+  document.querySelectorAll('.acq input[type=checkbox]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      cb.closest('.acq').classList.toggle('checked', cb.checked);
+    });
+  });
+
+  // Form submit (mock)
+  const form = document.getElementById('leadForm');
+  const card = document.getElementById('formCard');
+  const succ = document.getElementById('success');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    // basic validation
+    const required = ['nome','cnpj','fat','wpp','email'];
+    let ok = true;
+    required.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value || (el.type === 'email' && !/.+@.+\..+/.test(el.value))) {
+        el.style.borderColor = '#FF7A45';
+        ok = false;
+      } else {
+        el.style.borderColor = '';
+      }
+    });
+    const acqAny = [...document.querySelectorAll('.acq input[type=checkbox]')].some(c => c.checked);
+    document.getElementById('acqGrid').style.outline = acqAny ? '' : '2px solid #FF7A45';
+    document.getElementById('acqGrid').style.outlineOffset = '4px';
+    document.getElementById('acqGrid').style.borderRadius = '12px';
+    if (!acqAny) ok = false;
+    if (!ok) return;
+    card.classList.add('done');
+    succ.classList.add('show');
+    succ.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  // Smooth header offset for in-page anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      const y = target.getBoundingClientRect().top + window.scrollY - 76;
+      window.scrollTo({top:y, behavior:'smooth'});
+    });
+  });
+</script>
+
+</body>
+</html>
