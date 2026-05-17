@@ -5,24 +5,25 @@
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>flui.cash — Sua máquina trabalha. Seu caixa flui.</title>
-<meta name="description" content="Capital de giro com recebíveis de cartão para PMEs. Taxa fixa de 3,99%, PIX em minutos, mesmo com CNPJ negativado. Mantenha sua maquininha de sempre." />
+<title>darvim — A evolução do seu crédito.</title>
+<meta name="description" content="A darvim antecipa seus recebimentos futuros de cartão em minutos. Atende CNPJ negativado, opera com múltiplas adquirentes via gravame CERC, e cobra taxa fixa de 3,99% — sem surpresas, sem letrinhas." />
+<link rel="icon" type="image/svg+xml" href="/logos/passaro_navy.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --green:#00C853;
-    --green-deep:#00A344;
-    --navy:#1E3A8A;
-    --navy-deep:#152968;
-    --coral:#FF7A45;
+    --green:#00D632;
+    --green-deep:#00A026;
+    --navy:#0A2540;
+    --navy-deep:#051628;
+    --coral:#00D632;
     --paper:#FAFAF7;
-    --ink:#1C1C1C;
-    --ink-2:#3C3C3C;
-    --mute:#6B6B66;
-    --line:#E5E5E0;
-    --line-2:#EFEFEA;
+    --ink:#0D1117;
+    --ink-2:#2D3648;
+    --mute:#6B7689;
+    --line:#E2E6EC;
+    --line-2:#F0F2F5;
     --radius:14px;
   }
   *{box-sizing:border-box}
@@ -426,24 +427,14 @@
 <!-- ===========================  HEADER  =========================== -->
 <header class="site">
   <div class="wrap nav">
-    <a class="logo" href="#top" aria-label="flui.cash, página inicial">
-      <!-- Logo SVG: maquininha azul-marinho com tela em formato de coração verde e botão coral -->
-      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-        <rect x="10" y="6" width="44" height="52" rx="7" fill="#1E3A8A"/>
-        <rect x="10" y="6" width="44" height="52" rx="7" stroke="#152968" stroke-width="1.2"/>
-        <!-- screen with ascending line + arrow -->
-        <rect x="14" y="11" width="36" height="24" rx="4" fill="#0E1F4D"/>
-        <path d="M18 30 L26 24 L32 26 L42 16" stroke="#00C853" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <path d="M37 16 L42 16 L42 21" stroke="#00C853" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- keypad dots -->
-        <g fill="#C8CDDF">
-          <circle cx="20" cy="42" r="1.6"/><circle cx="28" cy="42" r="1.6"/><circle cx="36" cy="42" r="1.6"/><circle cx="44" cy="42" r="1.6"/>
-          <circle cx="20" cy="48" r="1.6"/><circle cx="28" cy="48" r="1.6"/><circle cx="36" cy="48" r="1.6"/>
-        </g>
-        <!-- coral button -->
-        <circle cx="44" cy="48" r="3" fill="#FF7A45"/>
+    <a class="logo" href="#top" aria-label="darvim, página inicial">
+      <!-- Logo SVG: pássaro em voo (tentilhão de Galápagos) — herdado da metáfora Darwin -->
+      <svg width="38" height="38" viewBox="54 692 652 652" fill="none" aria-hidden="true">
+        <path d="M 138.959 1017.74 C 242.238 979.067 346.051 941.838 450.368 906.063 C 506.61 886.504 574.307 861.485 630.924 844.657 C 587.558 893.395 541.321 940.219 497.126 988.24 C 487.707 998.474 476.035 1011.66 465.911 1020.99 C 447.308 1021.05 426.568 1021.55 408.127 1021.16 C 399.54 1022.27 371.83 1021.85 362.339 1021.88 L 257.678 1021.72 L 172.099 1021.83 C 161.899 1021.85 138.638 1022.67 129.949 1021.56 L 129.848 1020.75 L 133.151 1019.62 L 138.959 1017.74 z" fill="var(--navy)"/>
+        <path d="M 133.151 1019.62 C 136.316 1021.34 137.285 1021.06 140.842 1021.02 C 198.236 1019.86 260.145 1020.76 317.744 1020.93 L 374.35 1020.83 C 384.202 1020.78 398.542 1020.35 408.127 1021.16 C 399.54 1022.27 371.83 1021.85 362.339 1021.88 L 257.678 1021.72 L 172.099 1021.83 C 161.899 1021.85 138.638 1022.67 129.949 1021.56 L 129.848 1020.75 L 133.151 1019.62 z" fill="#67788A"/>
+        <path d="M 281.662 1059.07 C 294.61 1058.64 327.184 1063.25 342.244 1064.44 C 393.457 1068.49 445.142 1074.89 496.343 1078.72 C 487.155 1083.29 480.165 1086.95 476.659 1097.75 C 469.12 1121 487.59 1155.69 497.467 1176.28 L 505.16 1191.5 C 429.785 1149.64 356.1 1100.54 281.662 1059.07 z" fill="var(--navy)"/>
       </svg>
-      <span class="word">flui<span class="dot">.</span>cash</span>
+      <span class="word">darvim</span>
     </a>
     <nav class="links" aria-label="Navegação principal">
       <a href="#como">Como funciona</a>
@@ -470,12 +461,12 @@
 <section class="hero" style="border-top:0;padding:0">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow"><span class="dot-pulse"></span> PIX em minutos · taxa fixa de 3,99%</span>
+      <span class="eyebrow"><span class="dot-pulse"></span> A evolução do seu crédito · PIX em minutos · 3,99%</span>
       <h1 style="margin-top:18px">
-        Sua máquina trabalha.<br/>
-        Seu caixa <span class="underline accent">flui</span>.
+        Vendeu hoje.<br/>
+        Recebeu <span class="underline accent">agora</span>.
       </h1>
-      <p class="lede">Capital de giro com recebíveis de cartão em minutos, taxa fixa de 3,99%, mesmo com CNPJ negativado. Sem trocar de maquininha.</p>
+      <p class="lede">A darvim é a próxima etapa da antecipação de recebíveis: a sua venda futura no cartão vira capital de giro hoje, via PIX em minutos. Atende CNPJ negativado, opera com múltiplas adquirentes via gravame CERC, e cobra taxa fixa de 3,99% — sem letrinhas.</p>
 
       <div class="chips" aria-label="Destaques">
         <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg> PIX em minutos</span>
@@ -504,7 +495,7 @@
         <div>
           <div class="lbl">Recebido via PIX</div>
           <div class="amt">R$ 9.601,00</div>
-          <div class="who">Restaurante do Carlos · agora</div>
+          <div class="who">Carlos · Restaurante · agora</div>
         </div>
       </div>
     </div>
@@ -551,7 +542,7 @@
           <span class="badge">● ao vivo</span>
         </div>
         <div class="amount">R$ 9.601,00</div>
-        <div class="meta">flui.cash → Restaurante do Carlos · 14:32</div>
+        <div class="meta">darvim → Carlos · Restaurante · 14:32</div>
         <div class="pix-row">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 9-9 9-9-9 9-9z"/><path d="M7 12 12 7l5 5-5 5z"/></svg>
           <span>Liquidação instantânea · Banco Central</span>
@@ -578,7 +569,7 @@
     <div class="section-head">
       <span class="kicker">Como funciona</span>
       <h2>Quatro passos. Sem burocracia.</h2>
-      <p>Sua maquininha continua a mesma. A FluiCash antecipa a sua venda futura no cartão e libera o valor como capital de giro na sua conta.</p>
+      <p>Sua maquininha continua a mesma. A darvim antecipa a sua venda futura no cartão e libera o valor como capital de giro na sua conta — em minutos, via PIX.</p>
     </div>
     <div class="steps">
       <div class="step">
@@ -623,7 +614,7 @@
     <img src="/photos/06-lifestyle-pix.jpg" alt="Comerciante sorrindo ao receber notificação de PIX no celular" loading="lazy"/>
   </div>
   <div class="wrap">
-    <span class="kicker">Sua próxima semana, hoje</span>
+    <span class="kicker">Antecipou. Recebeu. Tocou o negócio.</span>
     <h2>O momento em que o caixa flui.</h2>
     <p>PIX em minutos depois do aceite. Direto na sua conta, sem boleto, sem espera, sem ligar pra ninguém.</p>
     <div class="actions">
@@ -638,8 +629,8 @@
   <div class="wrap">
     <div class="section-head">
       <span class="kicker">Para quem é</span>
-      <h2>Para o comerciante que precisa do dinheiro do cartão antes do prazo padrão.</h2>
-      <p>Para o comerciante que opera com fluxo de caixa apertado e não pode esperar 30 dias pelo dinheiro que já vendeu.</p>
+      <h2>Para o comércio que evoluiu — e não pode mais esperar 30 dias pelo dinheiro que já vendeu.</h2>
+      <p>Cafeteria, quitanda, bar, padaria, salão, mercadinho, pet shop. Todo CNPJ tem direito a fluxo. A darvim foi feita para quem vive do giro semanal e precisa do caixa adaptado ao ritmo do negócio.</p>
     </div>
     <div class="audience">
       <div class="aud">
@@ -695,9 +686,9 @@
 <section class="testimonials">
   <div class="wrap">
     <div class="section-head" style="margin-bottom:48px">
-      <span class="kicker">Comércio que flui</span>
-      <h2>Quem já capta capital de giro aqui.</h2>
-      <p>Comerciantes brasileiros que antecipam a venda futura de cartão na FluiCash para manter o caixa em dia, sem trocar a maquininha que já funciona.</p>
+      <span class="kicker">Comércio que evoluiu</span>
+      <h2>Quem já antecipa com a darvim.</h2>
+      <p>Comerciantes brasileiros que antecipam a venda futura de cartão na darvim para manter o caixa em dia, sem trocar a maquininha que já funciona.</p>
     </div>
     <div class="test-grid">
       <article class="test-card">
@@ -751,9 +742,9 @@
 <section>
   <div class="wrap">
     <div class="section-head">
-      <span class="kicker">Por que a flui.cash</span>
-      <h2>Quatro diferenciais que entregamos juntos.</h2>
-      <p>Outras antecipadoras exigem troca de adquirente, cessão de recebíveis, ficha limpa no Serasa e dias de espera. Aqui, capital de giro com a sua maquininha de sempre — em minutos.</p>
+      <span class="kicker">Por que darvim</span>
+      <h2>A próxima etapa da antecipação de recebíveis.</h2>
+      <p>Outras antecipadoras exigem troca de adquirente, cessão de recebíveis, ficha limpa no Serasa e dias de espera. A darvim evoluiu essa lógica: capital de giro com a sua maquininha de sempre — em minutos, via PIX.</p>
     </div>
     <div class="diff">
       <div class="diff-card">
@@ -886,7 +877,7 @@
             <button type="submit" class="btn btn-primary btn-lg">Quero capital de giro →</button>
             <p class="meta">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-              Retorno em até 2 horas úteis. Seus dados são tratados conforme a LGPD e usados exclusivamente pela FluiCash.
+              Retorno em até 2 horas úteis. Seus dados são tratados conforme a LGPD e usados exclusivamente pela darvim.
             </p>
           </div>
         </form>
@@ -944,7 +935,7 @@
       </details>
       <details class="faq">
         <summary>O que é exatamente "antecipação de venda futura"? <span class="plus">+</span></summary>
-        <div class="body">É a mecânica regulatória que sustenta o produto. Você ainda vai vender no cartão nas próximas semanas — isso é uma venda futura. A flui.cash registra um gravame multi-adquirente na CERC sobre essa venda futura nas suas adquirentes (Stone, Cielo, Rede, GetNet, PagSeguro e SafraPay). Esse gravame garante a operação. Em troca, você recebe hoje, via PIX, o valor dessa venda futura — descontada a taxa fixa de 3,99% — para usar como capital de giro. Quando o pagamento das vendas chega na adquirente, ele é direcionado para liquidar a operação. Sua maquininha continua a mesma, sua adquirente continua a mesma, só muda o destino do dinheiro de uma semana de venda futura.</div>
+        <div class="body">É a mecânica regulatória que sustenta o produto. Você ainda vai vender no cartão nas próximas semanas — isso é uma venda futura. A darvim registra um gravame multi-adquirente na CERC sobre essa venda futura nas suas adquirentes (Stone, Cielo, Rede, GetNet, PagSeguro e SafraPay). Esse gravame garante a operação. Em troca, você recebe hoje, via PIX, o valor dessa venda futura — descontada a taxa fixa de 3,99% — para usar como capital de giro. Quando o pagamento das vendas chega na adquirente, ele é direcionado para liquidar a operação. Sua maquininha continua a mesma, sua adquirente continua a mesma, só muda o destino do dinheiro de uma semana de venda futura.</div>
       </details>
     </div>
 
@@ -966,17 +957,13 @@
     <div class="grid">
       <div>
         <a class="logo" href="#top">
-          <svg width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-            <rect x="10" y="6" width="44" height="52" rx="7" fill="#1E3A8A"/>
-            <rect x="14" y="11" width="36" height="24" rx="4" fill="#0E1F4D"/>
-            <path d="M18 30 L26 24 L32 26 L42 16" stroke="#00C853" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <path d="M37 16 L42 16 L42 21" stroke="#00C853" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <g fill="#C8CDDF"><circle cx="20" cy="42" r="1.6"/><circle cx="28" cy="42" r="1.6"/><circle cx="36" cy="42" r="1.6"/><circle cx="44" cy="42" r="1.6"/><circle cx="20" cy="48" r="1.6"/><circle cx="28" cy="48" r="1.6"/><circle cx="36" cy="48" r="1.6"/></g>
-            <circle cx="44" cy="48" r="3" fill="#FF7A45"/>
+          <svg width="36" height="36" viewBox="54 692 652 652" fill="none" aria-hidden="true">
+            <path d="M 138.959 1017.74 C 242.238 979.067 346.051 941.838 450.368 906.063 C 506.61 886.504 574.307 861.485 630.924 844.657 C 587.558 893.395 541.321 940.219 497.126 988.24 C 487.707 998.474 476.035 1011.66 465.911 1020.99 C 447.308 1021.05 426.568 1021.55 408.127 1021.16 C 399.54 1022.27 371.83 1021.85 362.339 1021.88 L 257.678 1021.72 L 172.099 1021.83 C 161.899 1021.85 138.638 1022.67 129.949 1021.56 L 129.848 1020.75 L 133.151 1019.62 L 138.959 1017.74 z" fill="#FFFFFF"/>
+            <path d="M 281.662 1059.07 C 294.61 1058.64 327.184 1063.25 342.244 1064.44 C 393.457 1068.49 445.142 1074.89 496.343 1078.72 C 487.155 1083.29 480.165 1086.95 476.659 1097.75 C 469.12 1121 487.59 1155.69 497.467 1176.28 L 505.16 1191.5 C 429.785 1149.64 356.1 1100.54 281.662 1059.07 z" fill="#FFFFFF"/>
           </svg>
-          <span class="word">flui<span class="dot" style="color:var(--green)">.</span>cash</span>
+          <span class="word">darvim</span>
         </a>
-        <p class="blurb">Capital de giro com recebíveis de cartão para o comércio brasileiro, via antecipação de venda futura registrada na CERC. Vendeu hoje. Recebeu agora.</p>
+        <p class="blurb">A evolução do crédito para o comércio brasileiro. Antecipação de venda futura de cartão via gravame multi-adquirente na CERC. Vendeu hoje. Recebeu agora.</p>
       </div>
       <div>
         <h4>Empresa</h4>
@@ -1007,12 +994,12 @@
     </div>
 
     <div class="compliance">
-      <b>A flui.cash é correspondente bancário.</b> Operações de crédito concedidas por instituição financeira parceira, regulada pelo Banco Central do Brasil. Recebíveis registrados em entidade autorizada (CERC). A flui.cash não capta recursos do público nem pratica intermediação financeira por conta própria.
+      <b>A darvim é correspondente bancário.</b> Operações de crédito concedidas por instituição financeira parceira, regulada pelo Banco Central do Brasil. Recebíveis registrados em entidade autorizada (CERC). A darvim não capta recursos do público nem pratica intermediação financeira por conta própria.
     </div>
 
     <div class="legal">
-      <span>© 2026 flui.cash · Todos os direitos reservados.</span>
-      <span class="mono">v1.0 · Made in Brasil</span>
+      <span>© 2026 darvim · Todos os direitos reservados.</span>
+      <span class="mono">v2.0 · Made in Brasil</span>
     </div>
   </div>
 </footer>
